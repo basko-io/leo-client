@@ -3,7 +3,7 @@ on:
   - pull_request
 
 jobs:
-  cache-and-install:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,6 +43,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t leo-client .
+          docker build -t leo-client -f ../infrastructure/Dockerfile.base .
           docker tag leo-client basko-io/leo-client:latest
+      
       
