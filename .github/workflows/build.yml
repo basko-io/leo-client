@@ -40,3 +40,9 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      - name: Build Docker Image
+        run: |
+          docker build -t leo-client .
+          docker tag leo-client basko-io/leo-client:latest
+      

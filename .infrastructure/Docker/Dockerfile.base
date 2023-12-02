@@ -1,0 +1,13 @@
+# Use a small Alpine-based Nginx image
+FROM nginx:stable-alpine
+
+# Copy the built dist folder from the context into the image
+# This assumes that GitHub Actions builds your Vite.js project
+# and places the dist folder in the Docker context
+COPY dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx when the container starts
+CMD ["nginx", "-g", "daemon off;"]
