@@ -43,7 +43,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t leo-client -f ./infrastructure/Docker/Dockerfile.base .
+          docker build -t leo-client -f ./.infrastructure/Docker/Dockerfile.base .
           docker tag leo-client basko-io/leo-client:latest
       
       
