@@ -31,6 +31,16 @@ jobs:
           version: 8
           run_install: false
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -55,9 +65,6 @@ jobs:
         run: |
           docker build -t leo-client -f ./.infrastructure/Docker/Dockerfile.base .
           docker tag leo-client ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
       - name: Push Docker Image to Amazon ECR
         run: |
