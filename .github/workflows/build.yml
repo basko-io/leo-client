@@ -63,8 +63,8 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t leo-client -f ./.infrastructure/Docker/Dockerfile.base .
-          docker tag leo-client ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          docker build -t ${{ env.ECR_REPOSITORY }} -f ./.infrastructure/Docker/Dockerfile.base .
+          docker tag ${{ env.ECR_REPOSITORY }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
 
       - name: Push Docker Image to Amazon ECR
         run: |
