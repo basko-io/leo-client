@@ -12,7 +12,7 @@ function App() {
         <a href="https://github.com/basko-io" target="_blank">
           <img src={baskoioLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://github.com/basko-io/leo-client" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
