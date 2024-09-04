@@ -1,29 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import baskoioLogo from './assets/img/basko-io.png'
-import './App.css'
+import '@mantine/core/styles.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { MantineProvider } from '@mantine/core';
+import { Router } from './Router';
+import { theme } from './theme';
+import Layout from './components/layout';
 
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://github.com/basko-io" target="_blank">
-          <img src={baskoioLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://github.com/basko-io/leo-client" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Basko.io + Leo</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
-  )
+    <MantineProvider theme={theme}>
+      <Layout>
+        <Router />
+      </Layout>
+    </MantineProvider>
+  );
 }
-
-export default App
