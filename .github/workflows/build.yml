@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: eu-north-1
-  ECR_REPOSITORY: leo_client_container_registry_dev	
+  ECR_REPOSITORY: leo_client_container_registry_prod
   CONTAINER_NAME: leo-client
   # Set other environment variables like ECS_SERVICE, ECS_CLUSTER, etc.
 
