@@ -15,6 +15,7 @@ export default defineConfig({
       root: "/"
     },
   },
+  base: "./",
   assetsInclude: ['**/*.md']
 
 });
