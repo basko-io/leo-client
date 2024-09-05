@@ -1,0 +1,42 @@
+name: Build Site and Deploy to S3
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      with:
+        version: 8
+        run_install: false
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build project
+      run: pnpm run build
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Copy files to S3 bucket
+      run: |
+        aws s3 sync dist/ s3://leo-client-prod
