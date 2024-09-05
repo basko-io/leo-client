@@ -39,20 +39,4 @@ jobs:
 
     - name: Copy files to S3 bucket
       run: |
-        aws s3 sync dist/ s3://leo-client-prod \
-          --exclude "*" \
-          --include "*.html" --content-type "text/html" \
-          --include "*.css" --content-type "text/css" \
-          --include "*.js" --content-type "application/javascript" \
-          --include "*.json" --content-type "application/json" \
-          --include "*.svg" --content-type "image/svg+xml" \
-          --include "*.png" --content-type "image/png" \
-          --include "*.jpg" --content-type "image/jpeg" \
-          --include "*.jpeg" --content-type "image/jpeg" \
-          --include "*.gif" --content-type "image/gif" \
-          --include "*.woff" --content-type "font/woff" \
-          --include "*.woff2" --content-type "font/woff2" \
-          --include "*.ttf" --content-type "font/ttf" \
-          --include "*.eot" --content-type "application/vnd.ms-fontobject" \
-          --include "*.otf" --content-type "font/otf" \
-          --delete
+        aws s3 sync dist/ s3://leo-client-prod

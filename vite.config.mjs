@@ -15,6 +15,10 @@ export default defineConfig({
       root: "/"
     },
   },
+  build: {
+    outDir: './dist',
+    assetsDir: './src',
+  },
   base: "./",
   assetsInclude: ['**/*.md']
 
